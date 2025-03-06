@@ -24,10 +24,12 @@ import {
   TbBrandInstagram,
   TbBrandLinkedin,
   TbBrandX,
+  TbCheck,
   TbChevronRight,
   TbDownload,
   TbMail,
   TbPaperclip,
+  TbPlus,
 } from "react-icons/tb";
 
 export default function Home() {
@@ -364,12 +366,13 @@ export default function Home() {
           </Box>
         </Stack>
 
+        {/* Divider */}
         <Box sx={{ py: 4 }}>
           <Divider
             sx={{
               width: "100%",
               maxWidth: "1352px",
-              bgcolor: "#18242E",
+              bgcolor: "#333333",
               margin: "0 auto",
             }}
           />
@@ -448,6 +451,387 @@ export default function Home() {
               </Grid>
             ))}
           </Grid>
+        </Box>
+
+        {/* My work Section */}
+        <Box ref={benefitsRef} sx={{ py: 4 }}>
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={2}
+            sx={{ p: 2 }}
+          >
+            <Typography level="h1" fontWeight={400} sx={{ color: "#ffffff" }}>
+              MY SERVICES
+            </Typography>
+            <Typography level="h4" fontWeight={400} sx={{ color: "#aaa" }}>
+              Get to know more about me
+            </Typography>
+            <Box
+              sx={{ width: "48px", height: "4px", backgroundColor: "#E1B77B" }}
+            />
+          </Stack>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              maxWidth: "1352px",
+              margin: "0 auto",
+            }}
+          >
+            {[1, 2, 3].map((id) => (
+              <Grid key={id} xs={6}>
+                <Stack direction="column" alignItems="center">
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: "100%",
+                      height: "260px",
+                      borderRadius: "0px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <Image
+                      src="/hero-image.png"
+                      alt="Cover"
+                      fill
+                      priority
+                      quality={90}
+                      style={{ objectFit: "cover" }}
+                      sizes="760px"
+                    />
+                  </Box>
+                  <Card
+                    variant="solid"
+                    sx={{
+                      width: "100%",
+                      bgcolor: "transparent",
+                      border: "2px solid #333333",
+                      borderRadius: "0px",
+                      p: 4,
+                    }}
+                  >
+                    <CardContent>
+                      <Stack
+                        direction="row"
+                        width={"100%"}
+                        sx={{
+                          alignContent: "center",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Stack
+                          direction="column"
+                          sx={{ alignContent: "left", alignItems: "left" }}
+                        >
+                          <Typography
+                            level="h4"
+                            textColor="#ffffff"
+                            sx={{ pb: 1 }}
+                          >
+                            Integrate today
+                          </Typography>
+                          <Stack
+                            direction={"row"}
+                            spacing={2}
+                            sx={{
+                              alignContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Typography textColor="#aaa" level="body-sm">
+                              Web Design
+                            </Typography>
+                            <Box>
+                              <Divider
+                                sx={{
+                                  width: "20px",
+                                  height: "2px",
+                                  bgcolor: "#E1B77B",
+                                  margin: "0 auto",
+                                }}
+                              />
+                            </Box>
+                            <Typography textColor="#aaa " level="body-sm">
+                              11 Oct, 2024{" "}
+                            </Typography>
+                          </Stack>
+                        </Stack>
+                        <IconButton
+                          sx={{
+                            border: "2px solid #333",
+                            borderRadius: 0,
+                            padding: 1.5,
+
+                            transition:
+                              "background-color 0.3s ease, transform 0.2s ease",
+                            "&:hover": {
+                              backgroundColor: "transparent",
+                              border: "2px solid #E1B77B",
+                            },
+                          }}
+                        >
+                          <TbPlus size={24} color={"888"} />
+                        </IconButton>
+                      </Stack>
+                    </CardContent>
+                  </Card>
+                </Stack>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
+        {/* Divider */}
+        <Box sx={{ py: 4 }}>
+          <Divider
+            sx={{
+              width: "100%",
+              maxWidth: "1352px",
+              bgcolor: "#333333",
+              margin: "0 auto",
+            }}
+          />
+        </Box>
+
+        {/* Experience Section */}
+        <Box ref={benefitsRef} sx={{ py: 4 }}>
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={2}
+            sx={{ p: 2 }}
+          >
+            <Typography level="h1" fontWeight={400} sx={{ color: "#ffffff" }}>
+              SKILLS & EXPERIENCE{" "}
+            </Typography>
+            <Typography level="h4" fontWeight={400} sx={{ color: "#aaa" }}>
+              Get to know more about me
+            </Typography>
+            <Box
+              sx={{ width: "48px", height: "4px", backgroundColor: "#E1B77B" }}
+            />
+          </Stack>
+
+          <Stack
+            direction="row"
+            width="100%"
+            spacing={8}
+            sx={{
+              pt: 4,
+              maxWidth: "1352px",
+              margin: "0 auto",
+              alignItems: "flex-start",
+              minHeight: "150px", // Add minimum height to ensure visibility
+            }}
+          >
+            <Stack direction="column" gap={3} sx={{ flex: 1 }}>
+              <Typography textColor="#fff" level="h4">
+                SKILLS{" "}
+              </Typography>
+              <Stack direction="column" gap={2} sx={{ flex: 1 }}>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Mockups and Presentations{" "}
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+
+            <Divider
+              component="div"
+              orientation="vertical"
+              sx={{
+                borderLeftWidth: "1px",
+                borderColor: "#E1B77B", // More visible color
+                mx: 2,
+                height: "452px",
+                alignSelf: "center",
+              }}
+            />
+
+            <Stack direction="column" gap={3} sx={{ flex: 1 }}>
+              <Typography textColor="#fff" level="h4">
+                SKILLS{" "}
+              </Typography>
+              <Stack direction="column" gap={2} sx={{ flex: 1 }}>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Prototyping, Wireframing, User-flows{" "}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignContent: "left", alignItems: "left" }}
+                >
+                  <TbCheck size={24} color={"#E1B77B"} />
+                  <Typography textColor="#fff" level="body-md">
+                    Mockups and Presentations{" "}
+                  </Typography>
+                </Stack>
+              </Stack>
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ alignContent: "left", alignItems: "left" }}
+              >
+                <TbCheck size={24} color={"#E1B77B"} />
+                <Typography textColor="#fff" level="body-md">
+                  Prototyping and Animation{" "}
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+          {/* Divider */}
+          <Box sx={{ py: 4 }}>
+            <Divider
+              sx={{
+                width: "100%",
+                maxWidth: "1352px",
+                bgcolor: "#333333",
+                margin: "0 auto",
+              }}
+            />
+          </Box>
+          <Stack direction="column" gap={3} sx={{ flex: 1 }}>
+            <Typography textColor="#fff" level="h4">
+              SKILLS{" "}
+            </Typography>
+            <Stack direction="column" gap={2} sx={{ flex: 1 }}>
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ alignContent: "left", alignItems: "left" }}
+              >
+                <TbCheck size={24} color={"#E1B77B"} />
+                <Typography textColor="#fff" level="body-md">
+                  Prototyping, Wireframing, User-flows{" "}
+                </Typography>
+              </Stack>
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ alignContent: "left", alignItems: "left" }}
+              >
+                <TbCheck size={24} color={"#E1B77B"} />
+                <Typography textColor="#fff" level="body-md">
+                  Prototyping, Wireframing, User-flows{" "}
+                </Typography>
+              </Stack>
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ alignContent: "left", alignItems: "left" }}
+              >
+                <TbCheck size={24} color={"#E1B77B"} />
+                <Typography textColor="#fff" level="body-md">
+                  Prototyping, Wireframing, User-flows{" "}
+                </Typography>
+              </Stack>
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ alignContent: "left", alignItems: "left" }}
+              >
+                <TbCheck size={24} color={"#E1B77B"} />
+                <Typography textColor="#fff" level="body-md">
+                  Prototyping, Wireframing, User-flows{" "}
+                </Typography>
+              </Stack>
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ alignContent: "left", alignItems: "left" }}
+              >
+                <TbCheck size={24} color={"#E1B77B"} />
+                <Typography textColor="#fff" level="body-md">
+                  Mockups and Presentations{" "}
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
         </Box>
 
         {/* Scroll to Top Button */}
