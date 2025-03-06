@@ -21,8 +21,13 @@ import { motion } from "framer-motion";
 import {
   TbArrowUp,
   TbBrandBluesky,
+  TbBrandInstagram,
+  TbBrandLinkedin,
+  TbBrandX,
   TbChevronRight,
+  TbDownload,
   TbMail,
+  TbPaperclip,
 } from "react-icons/tb";
 
 export default function Home() {
@@ -147,7 +152,11 @@ export default function Home() {
             ALEXANDRIA
           </Typography>
 
-          <Stack direction="row" spacing={4}>
+          <Stack
+            direction="row"
+            spacing={6}
+            sx={{ alignItems: "center", pl: 4, pr: 4 }}
+          >
             <Link
               component="button"
               level="body-sm"
@@ -196,18 +205,6 @@ export default function Home() {
             >
               EXPERIENCE
             </Link>
-            <Link
-              component="button"
-              underline="none"
-              level="body-sm"
-              sx={{
-                color: "#8696A1",
-                fontWeight: 500,
-                "&:hover": { color: "#fff" },
-              }}
-            >
-              REVIEWS
-            </Link>
           </Stack>
 
           <Stack direction={"row"} spacing={2} sx={{ alignItems: "center" }}>
@@ -219,13 +216,13 @@ export default function Home() {
             </Typography>
             <Stack direction="row" spacing={1}>
               <IconButton>
-                <TbBrandBluesky size={24} />
+                <TbBrandX size={24} />
               </IconButton>
               <IconButton>
-                <TbBrandBluesky size={24} />
+                <TbBrandInstagram size={24} />
               </IconButton>
               <IconButton>
-                <TbBrandBluesky size={24} />
+                <TbBrandLinkedin size={24} />
               </IconButton>
             </Stack>
           </Stack>
@@ -286,22 +283,52 @@ export default function Home() {
               consectetur adipiscing elit. Sed id fermentum lectus, at sagittis
               velit. Quisque pharetra lacus vel enim porta malesuada.
             </Typography>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} sx={{ pt: 4 }}>
               <Button
-                color="primary"
-                variant="solid"
-                sx={{ minWidth: "auto", mt: 2 }}
-                endDecorator={<TbChevronRight size={20} />}
+                startDecorator={<TbMail size={20} />}
+                sx={{
+                  backgroundColor: "transparent",
+                  border: "2px solid #E1B77B",
+                  color: "#fff",
+                  borderRadius: "0px",
+                  minHeight: "48px",
+                  padding: "0px 16px",
+                  width: "fit-content",
+                  minWidth: "unset",
+                  transition: "background-color 0.3s ease, transform 0.2s ease",
+                  "&:hover": {
+                    backgroundColor: "#E1B77B",
+                    color: "#111",
+                    border: "2px solid #E1B77B",
+                  },
+                  "&&": { fontWeight: 600 },
+                }}
+                onClick={() => router.push("/sign")}
               >
-                Check my work
+                GET IN TOUCH
               </Button>
               <Button
-                color="primary"
-                variant="solid"
-                sx={{ minWidth: "auto", mt: 2 }}
-                endDecorator={<TbChevronRight size={20} />}
+                startDecorator={<TbDownload size={20} />}
+                sx={{
+                  backgroundColor: "transparent",
+                  border: "2px solid #E1B77B",
+                  color: "#fff",
+                  borderRadius: "0px",
+                  minHeight: "48px",
+                  padding: "0px 16px",
+                  width: "fit-content",
+                  minWidth: "unset",
+                  transition: "background-color 0.3s ease, transform 0.2s ease",
+                  "&:hover": {
+                    backgroundColor: "#E1B77B",
+                    color: "#111",
+                    border: "2px solid #E1B77B",
+                  },
+                  "&&": { fontWeight: 600 },
+                }}
+                onClick={() => router.push("/sign")}
               >
-                Download CV
+                DOWNLOAD CV
               </Button>
             </Stack>
           </Stack>
