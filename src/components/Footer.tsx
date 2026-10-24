@@ -1,27 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { Stack, Button, Typography } from "@mui/joy";
-import { useRouter } from "next/navigation";
+import { Stack, Typography } from "@mui/joy";
 import Link from "@mui/joy/Link";
 
 export default function Footer() {
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const router = useRouter(); // Use the router inside the component
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleNavigation = (path: string) => {
-    router.push(path); // Correctly using router.push()
-  };
-
   return (
     <Stack>
       <Stack

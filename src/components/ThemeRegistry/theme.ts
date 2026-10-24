@@ -1,8 +1,6 @@
 import { extendTheme } from "@mui/joy/styles";
-import { accordionSummaryClasses } from "@mui/joy/AccordionSummary";
 import { TbChevronDown } from "react-icons/tb";
-import { Source_Code_Pro, Syne } from "next/font/google";
-import type { InputOwnerState } from "@mui/joy/Input";
+import { Syne } from "next/font/google";
 
 declare module "@mui/joy/Button" {
   interface ButtonPropsColorOverrides {
@@ -88,7 +86,7 @@ const theme = extendTheme({
         },
       },
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: () => ({
           borderRadius: "12px",
           fontSize: "14px",
           minHeight: "40px",
@@ -171,7 +169,7 @@ const theme = extendTheme({
         variant: "outlined",
       },
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: () => ({
           borderRadius: "12px",
           fontSize: "14px",
           fontFamily: spaceGrotesk.style.fontFamily,

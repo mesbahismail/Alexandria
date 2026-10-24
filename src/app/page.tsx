@@ -20,15 +20,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   TbArrowUp,
-  TbBrandBluesky,
   TbBrandInstagram,
   TbBrandLinkedin,
   TbBrandX,
   TbCheck,
-  TbChevronRight,
   TbDownload,
   TbMail,
-  TbPaperclip,
   TbPlus,
 } from "react-icons/tb";
 
@@ -40,10 +37,6 @@ export default function Home() {
 
   // Refs for section scrolling
   const benefitsRef = useRef<HTMLDivElement>(null);
-  const integrationsRef = useRef<HTMLDivElement>(null);
-  const howItWorksRef = useRef<HTMLDivElement>(null);
-  const featuresRef = useRef<HTMLDivElement>(null);
-  const pricingRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
@@ -74,14 +67,6 @@ export default function Home() {
   ];
 
   // Scroll handlers
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      const offset = 72;
-      const elementTop = ref.current.offsetTop - offset;
-      window.scrollTo({ top: elementTop, behavior: "smooth" });
-    }
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
