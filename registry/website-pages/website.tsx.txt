@@ -1,0 +1,4 @@
+import AlexandriaResume, { type WebsitePage } from "./resume";
+export default function Website({ page = "home", projectSlug }: { page?: WebsitePage; projectSlug?: string }) {
+  return <AlexandriaResume page={page} projectSlug={projectSlug} />;
+}

@@ -1,0 +1,2 @@
+import Website from "@/components/alexandria/website";
+export default function Home() { return <Website page="home" />; }

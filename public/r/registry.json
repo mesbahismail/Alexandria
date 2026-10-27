@@ -1,0 +1,142 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "alexandria",
+  "homepage": "https://github.com/mesbahismail/Alexandria",
+  "items": [
+    {
+      "name": "alexandria-resume",
+      "type": "registry:block",
+      "title": "Alexandria Portfolio",
+      "description": "A charcoal and gold portfolio website component with home, services, work, case study, about, and contact views. Includes the original layered portrait animation and restrained luxury styling.",
+      "dependencies": [
+        "@mui/joy",
+        "@emotion/react",
+        "@emotion/styled",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/registry/alexandria/resume.tsx",
+          "type": "registry:component",
+          "target": "@components/alexandria/resume.tsx"
+        },
+        {
+          "path": "src/registry/alexandria/footer.tsx",
+          "type": "registry:component",
+          "target": "@components/alexandria/footer.tsx"
+        },
+        {
+          "path": "src/registry/alexandria/resume.module.css",
+          "type": "registry:file",
+          "target": "@components/alexandria/resume.module.css"
+        },
+        {
+          "path": "src/registry/alexandria/content.tsx",
+          "type": "registry:component",
+          "target": "@components/alexandria/content.tsx"
+        },
+        {
+          "path": "src/registry/alexandria/data.ts",
+          "type": "registry:lib",
+          "target": "@components/alexandria/data.ts"
+        },
+        {
+          "path": "src/registry/alexandria/fonts.css",
+          "type": "registry:file",
+          "target": "@components/alexandria/fonts.css"
+        },
+        {
+          "path": "src/registry/alexandria/InstrumentSerif-OFL.txt",
+          "type": "registry:file",
+          "target": "@components/alexandria/InstrumentSerif-OFL.txt"
+        }
+      ]
+    },
+    {
+      "name": "alexandria-website",
+      "type": "registry:block",
+      "title": "Alexandria Website",
+      "description": "The complete Alexandria portfolio template with Home, Services, Work, three case studies, About, and Contact routes for Next.js App Router.",
+      "dependencies": [
+        "@mui/joy",
+        "@emotion/react",
+        "@emotion/styled",
+        "framer-motion",
+        "react-icons"
+      ],
+      "files": [
+        {
+          "path": "src/registry/alexandria/resume.tsx",
+          "type": "registry:component",
+          "target": "@components/alexandria/resume.tsx"
+        },
+        {
+          "path": "src/registry/alexandria/footer.tsx",
+          "type": "registry:component",
+          "target": "@components/alexandria/footer.tsx"
+        },
+        {
+          "path": "src/registry/alexandria/resume.module.css",
+          "type": "registry:file",
+          "target": "@components/alexandria/resume.module.css"
+        },
+        {
+          "path": "src/registry/alexandria/content.tsx",
+          "type": "registry:component",
+          "target": "@components/alexandria/content.tsx"
+        },
+        {
+          "path": "src/registry/alexandria/data.ts",
+          "type": "registry:lib",
+          "target": "@components/alexandria/data.ts"
+        },
+        {
+          "path": "registry/website-pages/website.tsx.txt",
+          "type": "registry:component",
+          "target": "@components/alexandria/website.tsx"
+        },
+        {
+          "path": "registry/website-pages/page.tsx.txt",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        },
+        {
+          "path": "registry/website-pages/services/page.tsx.txt",
+          "type": "registry:page",
+          "target": "app/services/page.tsx"
+        },
+        {
+          "path": "registry/website-pages/work/page.tsx.txt",
+          "type": "registry:page",
+          "target": "app/work/page.tsx"
+        },
+        {
+          "path": "registry/website-pages/about/page.tsx.txt",
+          "type": "registry:page",
+          "target": "app/about/page.tsx"
+        },
+        {
+          "path": "registry/website-pages/contact/page.tsx.txt",
+          "type": "registry:page",
+          "target": "app/contact/page.tsx"
+        },
+        {
+          "path": "registry/website-pages/work/[slug]/page.tsx.txt",
+          "type": "registry:page",
+          "target": "app/work/[slug]/page.tsx"
+        },
+        {
+          "path": "src/registry/alexandria/fonts.css",
+          "type": "registry:file",
+          "target": "@components/alexandria/fonts.css"
+        },
+        {
+          "path": "src/registry/alexandria/InstrumentSerif-OFL.txt",
+          "type": "registry:file",
+          "target": "@components/alexandria/InstrumentSerif-OFL.txt"
+        }
+      ]
+    }
+  ]
+}
