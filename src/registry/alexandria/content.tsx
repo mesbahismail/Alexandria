@@ -7,9 +7,9 @@ import { TbArrowLeft, TbArrowRight, TbArrowUpRight, TbCheck, TbMail } from "reac
 import { defaultImages, projects, services } from "./data";
 import styles from "./resume.module.css";
 
-function PageHeading({ label, title, description, tone = "gold" }: { label: string; title: string; description: string; tone?: "gold" | "rose" }) {
+function PageHeading({ label, title, description }: { label: string; title: string; description: string }) {
   const split = title.lastIndexOf(" ");
-  return <div className={styles.pageHeading} data-tone={tone}><span className={styles.eyebrow}>{label}</span><h1>{split >= 0 ? <>{title.slice(0, split)} <em className={styles.headlineAccent}>{title.slice(split + 1)}</em></> : title}</h1><p>{description}</p><span className={styles.goldRule} /></div>;
+  return <div className={styles.pageHeading}><span className={styles.eyebrow}>{label}</span><h1>{split >= 0 ? <>{title.slice(0, split)} <em className={styles.headlineAccent}>{title.slice(split + 1)}</em></> : title}</h1><p>{description}</p><span className={styles.goldRule} /></div>;
 }
 
 export function ServicesPage({ imageUrls }: { imageUrls: string[] }) {
@@ -35,9 +35,9 @@ export function WorkPage({ imageUrls }: { imageUrls: string[] }) {
 
 export function AboutPage({ portraitUrl }: { portraitUrl: string }) {
   return <div className={styles.innerPage}>
-    <PageHeading label="THE PERSON BEHIND THE WORK" title="About Alexandria" tone="rose" description="Curiosity, care, and a considered approach to digital design." />
+    <PageHeading label="THE PERSON BEHIND THE WORK" title="About Alexandria" description="Curiosity, care, and a considered approach to digital design." />
     <section className={styles.aboutIntro}><div className={styles.aboutPortrait}><Image src={portraitUrl} alt="Alexandria Klaus portrait" fill unoptimized sizes="(max-width: 700px) 90vw, 35vw" /></div><div><span className={styles.eyebrow}>PRODUCT DESIGNER</span><h2>Good design begins<br />with <em className={styles.headlineAccent}>understanding.</em></h2><p>I’m Alexandria Klaus, a product designer interested in the way people experience the digital world. I bring research, structure, and visual craft together to make complex ideas feel simple.</p><p>I enjoy working across disciplines, asking useful questions, and paying attention to the details that turn a functional interface into a thoughtful experience.</p><Link href="/contact" className={styles.outlineLink}>GET IN TOUCH <TbArrowUpRight /></Link></div></section>
-    <section className={styles.aboutExperience}><div><span className={styles.eyebrow}>SKILLS & EXPERIENCE</span><h2>The craft behind<br />the <em className={styles.roseAccent}>experience.</em></h2><p>From early exploration to detailed interfaces, my design practice connects strategy, interaction, and visual expression.</p></div><div className={styles.expertiseList}>{[
+    <section className={styles.aboutExperience}><div><span className={styles.eyebrow}>SKILLS & EXPERIENCE</span><h2>The craft behind<br />the <em className={styles.headlineAccent}>experience.</em></h2><p>From early exploration to detailed interfaces, my design practice connects strategy, interaction, and visual expression.</p></div><div className={styles.expertiseList}>{[
       { title: "Product & UX design", text: "Research synthesis, information architecture, wireframing, and user flows." },
       { title: "Visual & interface design", text: "Interface design, typography, visual identities, and reusable design systems." },
       { title: "Prototyping & collaboration", text: "Interactive prototypes, motion studies, presentations, and developer handoff." },
@@ -77,7 +77,7 @@ export function ContactPage() {
     setPrepared(true);
   }
   return <div className={styles.innerPage}>
-    <PageHeading label="LET’S START A CONVERSATION" title="Get in touch" tone="rose" description="A new project, a collaboration, or a good question. I’d love to hear from you." />
+    <PageHeading label="LET’S START A CONVERSATION" title="Get in touch" description="A new project, a collaboration, or a good question. I’d love to hear from you." />
     <div className={styles.contactGrid}><div><h2>Tell me what<br />you have in <em className={styles.headlineAccent}>mind.</em></h2><p>Share a little about your idea, what you’re hoping to achieve, and where you need a hand.</p><a className={styles.contactEmail} href="mailto:hello@example.com"><TbMail />hello@example.com</a><div className={styles.contactNote}><span className={styles.eyebrow}>A THOUGHTFUL START</span><p>A project overview, your ideal timing, and any useful references are a great place to begin.</p></div></div>
     <form className={styles.contactForm} onSubmit={prepareEmail}>
       <div className={styles.formRow}><label>Your name<input name="name" autoComplete="name" placeholder="Alex Morgan" required maxLength={100} /></label><label>Email address<input type="email" name="email" autoComplete="email" placeholder="alex@company.com" required maxLength={254} /></label></div>

@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import {
   Box,
   Container,
@@ -10,7 +9,7 @@ import {
   IconButton,
   Button,
 } from "@mui/joy";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { AboutPage, CaseStudyPage, ContactPage, ServicesPage, WorkPage } from "./content";
@@ -30,38 +29,13 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
   const [isScrolled, setIsScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-
-  const handleMouseMove = (e: React.MouseEvent) => {
+  function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
     if (reduceMotion) return;
-    const { clientX, clientY } = e;
     setMousePos({
-      x: (clientX / window.innerWidth - 0.5) * 10,
-      y: (clientY / window.innerHeight - 0.5) * 10,
+      x: (event.clientX / window.innerWidth - 0.5) * 10,
+      y: (event.clientY / window.innerHeight - 0.5) * 10,
     });
-  };
-
-  const layers = [
-    { id: 3, bg: "transparent", border: "solid 4px #E1B77B", content: null },
-    {
-      id: 2,
-      bg: "transparent",
-      content: (
-        <Image
-          src={portraitUrl}
-          alt="Alexandria Klaus portrait"
-          fill
-          priority
-          unoptimized
-          quality={90}
-          style={{ objectFit: "cover", borderRadius: "var(--joy-radius-sm)" }}
-          sizes="520px"
-        />
-      ),
-    },
-    { id: 1, bg: "#444444", content: null },
-  ];
-
+  }
   // Scroll handlers
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" });
@@ -77,23 +51,23 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
   }, []);
 
   return (
-    <Box id="top" className={`${styles.site} ${page === "home" ? styles.homePage : ""}`} sx={{ bgcolor: "#151516", minHeight: "100vh" }}>
+    <Box id="top" className={`${styles.site} ${page === "home" ? styles.homePage : ""}`} sx={{ bgcolor: "#09090a", minHeight: "100vh" }}>
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
       {/* Cover light */}
-      <Box
+      {page !== "home" && <Box
         sx={{
           position: "absolute",
           width: "1000px",
           height: "600px",
           borderRadius: "50%",
-          backgroundColor: "#242426",
+          backgroundColor: "#111112",
           filter: "blur(500px)",
           zIndex: 0,
           top: "-200px",
           left: "50%",
           transform: "translateX(-50%)",
         }}
-      />
+      />}
 
       <Container
         disableGutters
@@ -110,7 +84,7 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
             position: "sticky",
             top: 0,
             backgroundColor: isScrolled
-              ? "rgba(21, 21, 22, 0.70)"
+              ? "rgba(9, 9, 10, 0.78)"
               : "transparent",
             backdropFilter: isScrolled ? "blur(10px)" : "none",
             transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
@@ -125,7 +99,7 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
               right: 0,
               bottom: 0,
               backgroundColor: isScrolled
-                ? "rgba(21, 21, 22, 0.35)"
+                ? "rgba(9, 9, 10, 0.40)"
                 : "transparent",
               backdropFilter: isScrolled ? "blur(10px)" : "none",
               zIndex: -1,
@@ -145,7 +119,6 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
             aria-label="Main navigation"
           >
             {[
-              { label: "HOME", href: "/", key: "home" },
               { label: "SERVICES", href: "/services", key: "services" },
               { label: "WORK", href: "/work", key: "work" },
               { label: "ABOUT", href: "/about", key: "about" },
@@ -156,7 +129,7 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
               aria-current={page === item.key || (page === "case-study" && item.key === "work") ? "page" : undefined}
               level="body-sm"
               underline="none"
-              sx={{ color: "#8696A1", fontWeight: 500, "&:hover": { color: "#fff" } }}
+              sx={{ color: "#a5a5a5", fontWeight: 500, "&:hover": { color: "#fff" } }}
             >{item.label}</Link>)}
           </Stack>
 
@@ -216,10 +189,8 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
             />
 
             <Typography className={styles.heroIntro} level="body-md" sx={{ color: "#ffffff", pt: 3 }}>
-              I design thoughtful digital products that bring clarity to everyday
-              experiences. My approach combines research, visual craft, and
-              prototyping to turn complex challenges into simple, intuitive
-              interfaces that feel effortless to use.
+              I turn complex ideas into thoughtful digital experiences through
+              research, visual craft, and prototyping.
             </Typography>
             <Stack direction="row" spacing={2} sx={{ pt: 4 }}>
               <Button
@@ -254,10 +225,11 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
             className={styles.portrait}
             sx={{ position: "relative", width: "600px", height: "600px" }}
             onMouseMove={handleMouseMove}
+            onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
           >
-            {layers.map((layer, index) => (
+            {[3, 2, 1].map((layer, index) => (
               <motion.div
-                key={layer.id}
+                key={layer}
                 style={{
                   position: "absolute",
                   top: `${index * 20}px`,
@@ -265,18 +237,15 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
                   width: "520px",
                   height: "520px",
                   border: index === 0 ? "2px solid #E1B77B" : "none",
-                  borderRadius: "0px",
+                  borderRadius: 0,
                   overflow: "hidden",
-                  backgroundColor: layer.bg,
-                  zIndex: layer.id,
+                  backgroundColor: index === 2 ? "#444444" : "transparent",
+                  zIndex: layer,
                 }}
-                animate={{
-                  x: reduceMotion ? 0 : mousePos.x * (layers.length - index) * 2,
-                  y: reduceMotion ? 0 : mousePos.y * (layers.length - index) * 2,
-                }}
+                animate={{ x: reduceMotion ? 0 : mousePos.x * (3 - index) * 2, y: reduceMotion ? 0 : mousePos.y * (3 - index) * 2 }}
                 transition={{ ease: "easeOut", duration: 0.3 }}
               >
-                {layer.content}
+                {index === 1 && <Image src={portraitUrl} alt="Alexandria Klaus portrait" fill priority unoptimized quality={90} sizes="(max-width: 900px) 90vw, 520px" style={{ objectFit: "cover" }} />}
               </motion.div>
             ))}
           </Box>
@@ -309,17 +278,19 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
             onClick={scrollToTop}
             sx={{
               borderRadius: "50%",
+              backgroundColor: "#E1B77B",
+              color: "#09090a",
               boxShadow: "md",
               "&:hover": {
                 transform: "translateY(-2px)",
-                bgcolor: "primary.600",
+                bgcolor: "#E1B77B",
               },
             }}
           >
             <TbArrowUp size={24} />
           </IconButton>
         </Box>
-        <Footer registryHref={registryHref} compact={page === "home" || page === "contact"} />
+        {page !== "home" && <Footer registryHref={registryHref} compact={page === "contact"} />}
       </Container>
     </Box>
   );

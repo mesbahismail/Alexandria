@@ -34,7 +34,6 @@
 /* A restrained contemporary finish over Alexandria’s original geometry. */
 .site {
   --accent: #e1b77b;
-  --champagne: #eed7b4;
   background-image: radial-gradient(ellipse at 80% 8%, rgba(225, 183, 123, .035), transparent 38%);
 }
 .header {
@@ -73,9 +72,9 @@
 }
 .site :global(.MuiButton-root:hover) {
   border-width: 1px;
-  border-color: var(--champagne);
-  background: var(--champagne);
-  color: #151516;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #09090a;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(225, 183, 123, .10);
 }
@@ -96,12 +95,12 @@
 .sectionHeading { padding-top: 24px !important; padding-bottom: 35px !important; }
 .sectionHeading > :first-child { font-size: clamp(28px, 2.6vw, 36px); letter-spacing: .055em; line-height: 1.3; }
 .sectionHeading > :nth-child(2) { font-size: 14px; color: #a8a6a4; font-weight: 400; letter-spacing: .015em; }
-.sectionHeading > :last-child { height: 2px; background: linear-gradient(90deg, #b99561, #eed7b4); }
+.sectionHeading > :last-child { height: 2px; background: #e1b77b; }
 .site .projectCard {
   height: 100%;
   border-radius: 3px;
   overflow: hidden;
-  background: #1a1a1c;
+  background: #111112;
   box-shadow: 0 8px 28px rgba(0, 0, 0, .10);
   transition: transform .35s ease, box-shadow .35s ease;
 }
@@ -127,7 +126,7 @@
 .cardBody :global(.MuiTypography-titleLg) { font-size: 20px; font-weight: 500; letter-spacing: -.015em; }
 .cardBody :global(.MuiTypography-bodyMd) { font-size: 14px; line-height: 1.85; }
 .cardBody :global(.MuiTypography-h4) { font-weight: 400; letter-spacing: -.02em; }
-.cardBody :global(.MuiIconButton-root) { border-width: 1px; border-color: #48413a; color: var(--accent); transition: transform .3s, border-color .3s, background-color .3s; }
+.cardBody :global(.MuiIconButton-root) { border-width: 1px; border-color: #e1b77b33; color: var(--accent); transition: transform .3s, border-color .3s, background-color .3s; }
 .cardBody :global(.MuiIconButton-root:hover) { background: rgba(225,183,123,.06); border-color: var(--accent); transform: rotate(90deg); }
 .site .footer { margin-top: 28px; background: radial-gradient(ellipse at 15% 45%, rgba(225,183,123,.035), transparent 65%); }
 .footer :global(h3) { font-size: clamp(25px, 2.7vw, 36px); letter-spacing: .035em; }
@@ -153,7 +152,7 @@
 }
 
 /* Website pages use the same charcoal, gold, and rectangular geometry. */
-.skipLink { position: fixed; left: 16px; top: -80px; z-index: 2000; padding: 12px 20px; background: #e1b77b; color: #151516; }
+.skipLink { position: fixed; left: 16px; top: -80px; z-index: 2000; padding: 12px 20px; background: #e1b77b; color: #09090a; }
 .skipLink:focus { top: 12px; }
 .navigation > a[aria-current="page"] { color: #e1b77b; }
 .navigation > a[aria-current="page"]::after { transform: scaleX(1); }
@@ -166,7 +165,7 @@
 .pageHeading { padding: 16px 0 50px; max-width: 800px; }
 .pageHeading h1 { margin-top: 20px; font-size: clamp(34px, 3.6vw, 50px); font-weight: 400; line-height: 1.16; letter-spacing: .025em; }
 .pageHeading p { margin-top: 20px; max-width: 580px; }
-.goldRule { display: block; margin-top: 28px; width: 48px; height: 2px; background: linear-gradient(90deg, #b99561, #eed7b4); }
+.goldRule { display: block; margin-top: 28px; width: 48px; height: 2px; background: #e1b77b; }
 .serviceRows { border-top: 1px solid #343234; }
 .serviceRow { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; padding: 44px 0; border-bottom: 1px solid #343234; align-items: center; }
 .servicePhoto { position: relative; height: 365px; overflow: hidden; border-radius: 2px; }
@@ -178,25 +177,25 @@
 .serviceCopy li, .caseDeliverables li { display: flex; gap: 10px; align-items: center; color: #c9c5bf; font-size: 12px; line-height: 1.5; }
 .serviceCopy li svg, .caseDeliverables li svg { color: #e1b77b; flex-shrink: 0; }
 .inlineLink { display: inline-flex; gap: 12px; align-items: center; color: #e1b77b; font-size: 12px; text-decoration: none; transition: color .25s; }
-.inlineLink:hover { color: #eed7b4; }
+.inlineLink:hover { color: #e1b77b; }
 .inlineLink svg { font-size: 18px; }
 .workGallery { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
 .site .workLink { display: flex; flex-direction: column; color: inherit; text-decoration: none; border: 1px solid #343234; }
 .workPhoto { height: 320px; position: relative; overflow: hidden; }
 .workPhoto img { transition: transform .6s ease; }
 .workLink:hover .workPhoto img { transform: scale(1.03); }
-.imageLabel { position: absolute; left: 18px; bottom: 18px; background: #151516d9; border: 1px solid #ffffff20; backdrop-filter: blur(8px); color: #eee3d3; font-size: 8px; letter-spacing: .12em; padding: 9px 12px; }
+.imageLabel { position: absolute; left: 18px; bottom: 18px; background: #09090ad9; border: 1px solid #ffffff20; backdrop-filter: blur(8px); color: #eee3d3; font-size: 8px; letter-spacing: .12em; padding: 9px 12px; }
 .workCaption { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 26px 28px 16px; }
 .workCaption h2 { margin-top: 11px; font-size: 25px; }
 .workCaption p { font-size: 12px; margin-top: 12px; }
-.roundArrow { flex-shrink: 0; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #64543f; color: #e1b77b; }
+.roundArrow { flex-shrink: 0; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #e1b77b55; color: #e1b77b; }
 .caseStudyLink { display: flex; align-items: center; gap: 12px; margin: auto 28px 0; padding: 16px 0 23px; color: #e1b77b; font-size: 9px; letter-spacing: .12em; }
 .aboutIntro { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: center; }
-.aboutPortrait { position: relative; height: 480px; box-shadow: 15px 15px 0 #252527; border: 1px solid #e1b77b55; }
+.aboutPortrait { position: relative; height: 480px; box-shadow: 15px 15px 0 #171718; border: 1px solid #e1b77b55; }
 .aboutIntro h2 { margin: 20px 0 24px; }
 .aboutIntro p + p { margin-top: 18px; }
 .outlineLink { display: inline-flex; width: fit-content; justify-content: center; align-items: center; gap: 15px; border: 1px solid #e1b77bcc; background: transparent; color: #fff; padding: 16px 22px; min-height: 48px; text-decoration: none; border-radius: 2px; font: inherit; font-size: 11px; letter-spacing: .075em; cursor: pointer; transition: background-color .25s, color .25s; }
-.outlineLink:hover { background: #eed7b4; color: #151516; }
+.outlineLink:hover { background: #e1b77b; color: #09090a; }
 .aboutIntro .outlineLink { margin-top: 28px; }
 .aboutExperience { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; margin-top: 85px; border-top: 1px solid #343234; padding-top: 50px; }
 .aboutExperience h2 { margin-top: 20px; }
@@ -232,12 +231,12 @@
 .contactForm { display: flex; flex-direction: column; gap: 24px; }
 .formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .contactForm label { display: flex; flex-direction: column; gap: 12px; font-size: 12px; color: #d7d2cb; }
-.contactForm input, .contactForm textarea, .contactForm select { width: 100%; min-width: 0; border: 1px solid #434044; border-radius: 2px; padding: 14px 16px; background: #1b1b1d; color: #eee; font: inherit; line-height: 1.6; color-scheme: dark; transition: border-color .2s; }
+.contactForm input, .contactForm textarea, .contactForm select { width: 100%; min-width: 0; border: 1px solid #434044; border-radius: 2px; padding: 14px 16px; background: #101011; color: #eee; font: inherit; line-height: 1.6; color-scheme: dark; transition: border-color .2s; }
 .contactForm textarea { resize: vertical; min-height: 150px; }
 .contactForm :is(input, textarea)::placeholder { color: #7e7b7d; }
 .contactForm :is(input, textarea, select):focus { outline: 1px solid #e1b77b; border-color: #e1b77b; outline-offset: 2px; }
 .contactForm .formHint { font-size: 11px; line-height: 1.7; margin-top: -10px; }
-.contactForm .formStatus { font-size: 13px; padding: 15px; border: 1px solid #e1b77b55; color: #eed7b4; }
+.contactForm .formStatus { font-size: 13px; padding: 15px; border: 1px solid #e1b77b55; color: #e1b77b; }
 @media (max-width: 1100px) {
   .innerPage { padding-inline: 10px; }
   .serviceRow, .aboutIntro, .aboutExperience { gap: 40px; }
@@ -276,11 +275,8 @@
 .site {
   --headline-font: "Alexandria Instrument Serif", Georgia, "Times New Roman", serif;
   --headline-ivory: #f1e9dc;
-  --headline-gold: #e3bf88;
-  --headline-rose: #cfa99d;
 }
-.site .headlineAccent { color: var(--headline-gold); font-style: italic; font-weight: 400; }
-.site .roseAccent, .pageHeading[data-tone="rose"] .headlineAccent { color: var(--headline-rose); font-style: italic; font-weight: 400; }
+.site .headlineAccent { color: var(--accent); font-style: italic; font-weight: 400; }
 .heroCopy .heroName {
   font-family: var(--headline-font);
   font-size: clamp(76px, 7.8vw, 112px);
@@ -329,4 +325,24 @@
 @media print {
   .heroCopy .heroName { font-size: 65px; }
   .pageHeading h1 { font-size: 60px; }
+}
+
+/* The original layered portrait over a continuous dark-gold backdrop. */
+.site.homePage {
+  background-color: #100c08;
+  background-image:
+    radial-gradient(ellipse at 78% 42%, rgba(147, 102, 45, .22), transparent 48%),
+    radial-gradient(ellipse at 30% 100%, rgba(89, 59, 30, .17), transparent 65%),
+    linear-gradient(118deg, #0b0a09 8%, #18120c 55%, #291d0e 100%);
+}
+.homePage > :global(.MuiContainer-root) { min-height: 100svh; }
+.homePage .header { border-bottom-color: rgba(225, 183, 123, .13); }
+.homePage .hero { min-height: calc(100svh - 90px); padding-top: 18px !important; padding-bottom: 24px; }
+.homePage .heroCopy { position: relative; z-index: 1; }
+@media (max-width: 1200px) and (min-width: 901px) {
+  .homePage .heroCopy .heroName { font-size: clamp(76px, 8.2vw, 100px); }
+}
+@media (max-width: 900px) {
+  .homePage .hero { gap: 10px !important; padding-bottom: 30px; }
+  .homePage .heroCopy { margin-top: 15px; }
 }

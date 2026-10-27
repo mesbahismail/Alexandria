@@ -14,11 +14,11 @@ Open http://localhost:3001. Development: `npm run dev -- --port 3001`. Source ch
 
 ## Typography
 
-Headlines use Instrument Serif with regular and italic WOFF2 faces bundled in `src/registry/alexandria/fonts.css`. Warm ivory, champagne gold, and muted rose accents add an editorial finish; navigation and body copy remain sans serif. The SIL Open Font License is included in `InstrumentSerif-OFL.txt`. The registry packages both files, so installations do not require runtime requests to Google Fonts.
+Headlines use Instrument Serif with regular and italic WOFF2 faces bundled in `src/registry/alexandria/fonts.css`. Warm ivory headlines and the original #E1B77B gold accent add an editorial finish; navigation and body copy remain sans serif. The SIL Open Font License is included in `InstrumentSerif-OFL.txt`. The registry packages both files, so installations do not require runtime requests to Google Fonts.
 
 ## Pages
 
-- `/`: a focused home hero with the original portrait, introductory text, and contact button.
+- `/`: a focused home hero with a dark-gold gradient, original layered portrait, short introduction, and contact button. The logo links home; there is no Home navigation item or homepage footer.
 - `/services`: one service per full-width row, including deliverables and a contact link.
 - `/work`: selected concept projects; every card opens a case study.
 - `/work/analytics-dashboard`, `/work/digital-workspace`, `/work/creative-portfolio`: individual case studies with challenge, approach, design direction, and next-project navigation.
@@ -58,3 +58,7 @@ Source: https://github.com/mesbahismail/Alexandria
 The repository was private when inspected. Local builds do not publish it or change visibility. Deploy to a public HTTPS domain or explicitly publish the source before sharing the registry. Update the localhost namespace URL in `components.json` for hosted use.
 
 Official directory listing requires a public open-source registry and a reviewed pull request to `shadcn-ui/ui`: https://ui.shadcn.com/docs/registry/registry-index. No directory submission has been made.
+
+## Archived avatar assets
+
+The generated avatar images in `public/images/alexandria-avatar-*.png` and generation prompts in `docs/avatar-prompts.md` are retained as optional assets. The homepage uses the original `public/hero-image.png` portrait with its offset gold frame and backing layers. It does not display avatar upload or pose controls.
