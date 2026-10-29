@@ -14,7 +14,7 @@ export default async function RegistryPage() {
     <Link href="/" className="text-sm text-[#e1b77b]">← Back to Alexandria</Link>
     <p className="mt-16 text-xs tracking-[.2em] text-[#e1b77b]">THE COMPONENT REGISTRY</p>
     <h1 className="mt-5 text-5xl tracking-tight">Alexandria, ready to install.</h1>
-    <p className="mt-6 max-w-2xl leading-7 text-neutral-400">The Alexandria portfolio template, packaged for the shadcn registry. Includes Home, Services, Work, case studies, About, and Contact, with the original charcoal and gold identity.</p>
+    <p className="mt-6 max-w-2xl leading-7 text-neutral-400">The Alexandria senior architect portfolio, packaged for the shadcn registry. Includes Home, Services, Work, case studies, About, and Contact, with the original charcoal and gold identity.</p>
     <article className="mt-12 rounded-lg border border-white/15 p-7">
       <span className="text-xs text-[#e1b77b]">REGISTRY:BLOCK · NEXT.JS · MUI JOY</span>
       <h2 className="mt-4 text-2xl">Alexandria Website</h2>

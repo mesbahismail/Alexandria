@@ -1,6 +1,6 @@
 # Alexandria
 
-A portfolio website template with Alexandria’s original charcoal and gold design, uppercase headings, fine outlined buttons, and animated layered portrait. Built with Next.js 15, React 19, MUI Joy, and Framer Motion.
+A senior architect portfolio template with monochrome architectural photography, an editorial charcoal and gold identity, staggered project cards, and full-screen About panels. Built with Next.js 15, React 19, MUI Joy, and Framer Motion.
 
 ## Run
 
@@ -18,15 +18,15 @@ Headlines use Instrument Serif with regular and italic WOFF2 faces bundled in `s
 
 ## Pages
 
-- `/`: a focused home hero with a dark-gold gradient, original layered portrait, short introduction, and contact button. The logo links home; there is no Home navigation item or homepage footer.
+- `/`: a full-screen editorial introduction with the architect’s portrait, biography, and contact button. The logo links home; there is no Home navigation item or homepage footer.
 - `/services`: one service per full-width row, including deliverables and a contact link.
 - `/work`: selected concept projects; every card opens a case study.
-- `/work/analytics-dashboard`, `/work/digital-workspace`, `/work/creative-portfolio`: individual case studies with challenge, approach, design direction, and next-project navigation.
-- `/about`: biography, skills, and design experience. Experience has no separate page or navigation item.
+- `/work/courtyard-living`, `/work/urban-workplace`, `/work/lightwell-gallery`, `/work/civic-pavilion`, `/work/quiet-retreat`: minimal case studies with a split title/image opening, a short idea and scope, two supporting image studies, brief and design-direction notes, a Close control returning to Work, next-project navigation, and a bottom Contact button.
+- `/about`: biography, architectural skills, and concept project experience. Experience has no separate page or navigation item.
 - `/contact`: sample contact details and a form that opens an email draft in the visitor’s email app. It does not send or store messages.
 - `/registry`: install instructions and registry endpoints.
 
-The header and footer are shared. Each route has its own title; invalid case-study slugs return 404.
+Portfolio sections share the fixed navigation. Contact and project pages use focused layouts with a top-right Close control. Each route has its own title; invalid case-study slugs return 404.
 
 ## Customize the template
 
@@ -61,4 +61,6 @@ Official directory listing requires a public open-source registry and a reviewed
 
 ## Archived avatar assets
 
-The generated avatar images in `public/images/alexandria-avatar-*.png` and generation prompts in `docs/avatar-prompts.md` are retained as optional assets. The homepage uses the original `public/hero-image.png` portrait with its offset gold frame and backing layers. It does not display avatar upload or pose controls.
+The generated avatar images in `public/images/alexandria-avatar-*.png` and generation prompts in `docs/avatar-prompts.md` are retained as optional assets. The homepage uses `public/images/homepage-portrait.jpg` in the split editorial layout. It does not display avatar upload or pose controls.
+
+Architectural reference photography is documented in [image credits](docs/image-credits.md). All five project narratives are illustrative concept studies.

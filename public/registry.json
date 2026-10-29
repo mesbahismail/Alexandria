@@ -6,8 +6,8 @@
     {
       "name": "alexandria-resume",
       "type": "registry:block",
-      "title": "Alexandria Portfolio",
-      "description": "A charcoal and gold portfolio website component with home, services, work, case study, about, and contact views. Includes the original layered portrait animation and restrained luxury styling.",
+      "title": "Alexandria Architect Portfolio",
+      "description": "An editorial portfolio for a senior architect, with architectural services, five concept case studies, About, and Contact. Includes monochrome architectural photography, full-screen About panels, and a charcoal and gold identity.",
       "dependencies": [
         "@mui/joy",
         "@emotion/react",
@@ -56,8 +56,8 @@
     {
       "name": "alexandria-website",
       "type": "registry:block",
-      "title": "Alexandria Website",
-      "description": "The complete Alexandria portfolio template with Home, Services, Work, three case studies, About, and Contact routes for Next.js App Router.",
+      "title": "Alexandria Architect Website",
+      "description": "An editorial portfolio for a senior architect, with architectural services, five concept case studies, About, and Contact. Includes monochrome architectural photography, full-screen About panels, and a charcoal and gold identity.",
       "dependencies": [
         "@mui/joy",
         "@emotion/react",
