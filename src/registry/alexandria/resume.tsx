@@ -7,35 +7,130 @@ import {
   Link,
   Typography,
   IconButton,
-  Button,
 } from "@mui/joy";
-import { useState, useEffect, type MouseEvent } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-import { AboutPage, CaseStudyPage, ContactPage, ServicesPage, WorkPage } from "./content";
+import { CaseStudyPage, ContactPage, ServicesPage, WorkPage } from "./content";
 import { defaultImages } from "./data";
 export type WebsitePage = "home" | "services" | "work" | "about" | "contact" | "case-study";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import Footer from "./footer";
 import styles from "./resume.module.css";
 import "./fonts.css";
 import {
   TbArrowUp,
-  TbMail,
+  TbArrowUpRight,
 } from "react-icons/tb";
 
-export default function AlexandriaResume({ portraitUrl = "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1000&q=85", imageUrls = defaultImages, registryHref = "https://github.com/mesbahismail/Alexandria", page = "home", projectSlug }: { portraitUrl?: string; imageUrls?: string[]; registryHref?: string; page?: WebsitePage; projectSlug?: string }) {
+const defaultPortrait = "https://images.pexels.com/photos/30712814/pexels-photo-30712814.jpeg?auto=compress&cs=tinysrgb&w=1600";
+
+function LongArrow({ left = false }: { left?: boolean }) {
+  return <svg className={styles.longArrow} viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path d={left ? "M399 12H2M13 1L2 12l11 11" : "M1 12h397M387 1l11 11-11 11"} fill="none" stroke="currentColor" strokeWidth="1.2" vectorEffect="non-scaling-stroke" /></svg>;
+}
+
+type CycleSection = "work" | "about" | "services";
+const sectionOrder: CycleSection[] = ["work", "about", "services"];
+const sectionLabels = { work: "Work", about: "About", services: "Services" };
+
+function CycleNavigation({ section, onNavigate }: { section: CycleSection; onNavigate?: (direction: number) => void }) {
+  const index = sectionOrder.indexOf(section);
+  const previous = sectionOrder[(index + 2) % 3];
+  const next = sectionOrder[(index + 1) % 3];
+  return <nav className={styles.spreadNavigation} aria-label="Explore portfolio">
+    {onNavigate ? <>
+      <button onClick={() => onNavigate(-1)} className={styles.workDirection} aria-label={`Previous section: ${sectionLabels[previous]}`}><LongArrow left /><span>{sectionLabels[previous]}</span></button>
+      <button onClick={() => onNavigate(1)} className={styles.servicesDirection} aria-label={`Next section: ${sectionLabels[next]}`}><span>{sectionLabels[next]}</span><LongArrow /></button>
+    </> : <>
+      <NextLink href={`/${previous}`} className={styles.workDirection}><LongArrow left /><span>{sectionLabels[previous]}</span></NextLink>
+      <NextLink href={`/${next}`} className={styles.servicesDirection}><span>{sectionLabels[next]}</span><LongArrow /></NextLink>
+    </>}
+  </nav>;
+}
+
+function EditorialHome({ portraitUrl, imageUrls, initialSection = "about" }: { portraitUrl: string; imageUrls: string[]; initialSection?: CycleSection }) {
+  // Matching end panels allow either direction to wrap without crossing another section.
+  const panels: CycleSection[] = ["services", "work", "about", "services", "work"];
+  const initialIndex = sectionOrder.indexOf(initialSection) + 1;
+  const rail = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const [active, setActive] = useState(initialIndex);
+  const activeIndex = useRef(initialIndex);
+  const moving = useRef(false);
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function settle() {
+    const target = rail.current;
+    if (!target) return;
+    let index = Math.round(target.scrollLeft / target.clientWidth);
+    if (index === 0) index = 3;
+    else if (index === 4) index = 1;
+    target.scrollTo({ left: target.clientWidth * index, behavior: "instant" });
+    activeIndex.current = index;
+    setActive(index);
+    moving.current = false;
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+  }
+
+  useLayoutEffect(() => {
+    const target = rail.current;
+    if (!target) return;
+    activeIndex.current = initialIndex;
+    setActive(initialIndex);
+    target.scrollTo({ left: target.clientWidth * initialIndex, behavior: "instant" });
+    const observer = new ResizeObserver(() => {
+      target.scrollTo({ left: activeIndex.current * target.clientWidth, behavior: "instant" });
+    });
+    observer.observe(target);
+    return () => {
+      observer.disconnect();
+      if (settleTimer.current) clearTimeout(settleTimer.current);
+    };
+  }, [initialIndex]);
+
+  function navigate(direction: number) {
+    const target = rail.current;
+    if (!target || moving.current) return;
+    moving.current = true;
+    target.scrollTo({ left: target.clientWidth * (activeIndex.current + direction), behavior: reduceMotion ? "instant" : "smooth" });
+    settleTimer.current = setTimeout(settle, reduceMotion ? 0 : 900);
+  }
+
+  return <div className={`${styles.site} ${styles.editorialSite}`}>
+    <a className={styles.skipLink} href="#main-content">Skip to content</a>
+    <NextLink href="/contact" className={styles.contactTab}>Contact me <TbArrowUpRight aria-hidden="true" /></NextLink>
+    <main id="main-content" ref={rail} className={styles.spreadRail} aria-label="Portfolio sections" onScroll={event => {
+      const target = event.currentTarget;
+      const index = Math.round(target.scrollLeft / target.clientWidth);
+      activeIndex.current = index;
+      setActive(index);
+      if (settleTimer.current) clearTimeout(settleTimer.current);
+      settleTimer.current = setTimeout(settle, 180);
+    }}>
+      {panels.map((section, index) => <section key={index} tabIndex={-1} aria-label={sectionLabels[section]} inert={active !== index} className={`${styles.spreadPanel} ${section === "about" ? styles.editorialHome : styles.destinationPanel}`}>
+        {section === "about" ? <>
+          <header className={styles.editorialHeader}><NextLink href="/" className={styles.editorialLogo} aria-label="Alexandria home">ALEXANDRIA</NextLink></header>
+          <div className={styles.editorialCopy}>
+            <h1>Alexandria<br /><em>Klaus</em></h1>
+            <p className={styles.editorialRole}>Product Designer</p>
+            <div className={styles.editorialBio}><div><p>I turn complex ideas into thoughtful digital experiences through research, visual craft, and prototyping.</p><p>Working at the intersection of strategy, interaction, and visual craft — to make the everyday feel a little more considered.</p></div></div>
+          </div>
+          <figure className={styles.editorialPortrait}><div className={styles.portraitFrame}><Image src={portraitUrl} alt="Black-and-white portrait of a woman against a dark background" fill priority unoptimized sizes="(max-width: 700px) 100vw, 50vw" /></div></figure>
+        </> : <>
+          <div className={styles.panelTop}><button onClick={() => navigate(section === "work" ? 1 : -1)}>ALEXANDRIA</button></div>
+          {section === "work" ? <WorkPage imageUrls={imageUrls} /> : <ServicesPage imageUrls={imageUrls} />}
+        </>}
+      </section>)}
+    </main>
+    <div className={styles.sectionAnnouncement} role="status" aria-live="polite">{sectionLabels[panels[active]]}</div>
+    <CycleNavigation section={panels[active]} onNavigate={navigate} />
+  </div>;
+}
+
+export default function AlexandriaResume({ portraitUrl = defaultPortrait, imageUrls = defaultImages, registryHref = "https://github.com/mesbahismail/Alexandria", page = "home", projectSlug }: { portraitUrl?: string; imageUrls?: string[]; registryHref?: string; page?: WebsitePage; projectSlug?: string }) {
   const reduceMotion = useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
-    if (reduceMotion) return;
-    setMousePos({
-      x: (event.clientX / window.innerWidth - 0.5) * 10,
-      y: (event.clientY / window.innerHeight - 0.5) * 10,
-    });
-  }
   // Scroll handlers
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" });
@@ -50,11 +145,14 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (page === "home" || page === "about" || page === "work" || page === "services") return <EditorialHome portraitUrl={portraitUrl} imageUrls={imageUrls} initialSection={page === "home" ? "about" : page} />;
+
   return (
-    <Box id="top" className={`${styles.site} ${page === "home" ? styles.homePage : ""}`} sx={{ bgcolor: "#09090a", minHeight: "100vh" }}>
+    <Box id="top" className={`${styles.site} ${styles.persistentSite}`} sx={{ bgcolor: "#09090a", minHeight: "100vh" }}>
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
+<NextLink href="/contact" className={styles.contactTab} aria-current={page === "contact" ? "page" : undefined}>Contact me <TbArrowUpRight aria-hidden="true" /></NextLink>
       {/* Cover light */}
-      {page !== "home" && <Box
+      {<Box
         sx={{
           position: "absolute",
           width: "1000px",
@@ -134,130 +232,15 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
           </Stack>
 
 
-          <Button
-            component={NextLink}
-            href="/contact"
-            aria-current={page === "contact" ? "page" : undefined}
-            startDecorator={<TbMail size={20} />}
-            sx={{
-              backgroundColor: "transparent",
-              border: "2px solid #E1B77B",
-              color: "#fff",
-              borderRadius: "0px",
-              minHeight: "48px",
-              padding: "0px 16px",
-              width: "fit-content",
-              minWidth: "unset",
-              transition: "background-color 0.3s ease, transform 0.2s ease",
-              "&:hover": {
-                backgroundColor: "#E1B77B",
-                color: "#111",
-                border: "2px solid #E1B77B",
-              },
-              "&&": { fontWeight: 600 },
-            }}
-          >
-            GET IN TOUCH
-          </Button>
+
         </Stack>
 
         <main id="main-content">
-        {page === "home" && (
-        <Stack id="about" className={styles.hero}
-          direction="row"
-          spacing={8}
-          sx={{ alignItems: "center", pt: 2, pr: 4 }}
-        >
-          <Stack
-            direction="column"
-            width={634}
-            spacing={2}
-            sx={{ mb: 2, mt: 4 }}
-            className={styles.heroCopy}
-          >
-            <Stack direction="column" spacing={0.5} sx={{ pb: 3 }}>
-              <Typography className={styles.heroName} level="h1" fontWeight="400" sx={{ color: "#ffffff" }}>
-                Alexandria<br /><span className={styles.headlineAccent}>Klaus</span>
-              </Typography>
-              <Typography level="h4" fontWeight="400" sx={{ color: "#AAAAAA" }}>
-                Product Designer
-              </Typography>
-            </Stack>
-
-            <Box
-              sx={{ width: "48px", height: "4px", backgroundColor: "#E1B77B" }}
-            />
-
-            <Typography className={styles.heroIntro} level="body-md" sx={{ color: "#ffffff", pt: 3 }}>
-              I turn complex ideas into thoughtful digital experiences through
-              research, visual craft, and prototyping.
-            </Typography>
-            <Stack direction="row" spacing={2} sx={{ pt: 4 }}>
-              <Button
-                component={NextLink}
-                href="/contact"
-                startDecorator={<TbMail size={20} />}
-                sx={{
-                  backgroundColor: "transparent",
-                  border: "2px solid #E1B77B",
-                  color: "#fff",
-                  borderRadius: "0px",
-                  minHeight: "48px",
-                  padding: "0px 16px",
-                  width: "fit-content",
-                  minWidth: "unset",
-                  transition: "background-color 0.3s ease, transform 0.2s ease",
-                  "&:hover": {
-                    backgroundColor: "#E1B77B",
-                    color: "#111",
-                    border: "2px solid #E1B77B",
-                  },
-                  "&&": { fontWeight: 600 },
-                }}
-              >
-                GET IN TOUCH
-              </Button>
-
-            </Stack>
-          </Stack>
-
-          <Box
-            className={styles.portrait}
-            sx={{ position: "relative", width: "600px", height: "600px" }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
-          >
-            {[3, 2, 1].map((layer, index) => (
-              <motion.div
-                key={layer}
-                style={{
-                  position: "absolute",
-                  top: `${index * 20}px`,
-                  left: `${index * 20}px`,
-                  width: "520px",
-                  height: "520px",
-                  border: index === 0 ? "2px solid #E1B77B" : "none",
-                  borderRadius: 0,
-                  overflow: "hidden",
-                  backgroundColor: index === 2 ? "#444444" : "transparent",
-                  zIndex: layer,
-                }}
-                animate={{ x: reduceMotion ? 0 : mousePos.x * (3 - index) * 2, y: reduceMotion ? 0 : mousePos.y * (3 - index) * 2 }}
-                transition={{ ease: "easeOut", duration: 0.3 }}
-              >
-                {index === 1 && <Image src={portraitUrl} alt="Alexandria Klaus portrait" fill priority unoptimized quality={90} sizes="(max-width: 900px) 90vw, 520px" style={{ objectFit: "cover" }} />}
-              </motion.div>
-            ))}
-          </Box>
-        </Stack>
-
-        )}
-        {page === "services" && <ServicesPage imageUrls={imageUrls} />}
-        {page === "work" && <WorkPage imageUrls={imageUrls} />}
-        {page === "about" && <AboutPage portraitUrl={portraitUrl} />}
         {page === "contact" && <ContactPage />}
         {page === "case-study" && projectSlug && <CaseStudyPage slug={projectSlug} imageUrls={imageUrls} />}
         </main>
+
+        <CycleNavigation section={page === "case-study" ? "work" : "about"} />
 
         {/* Scroll to Top Button */}
         <Box
@@ -290,7 +273,7 @@ export default function AlexandriaResume({ portraitUrl = "https://images.unsplas
             <TbArrowUp size={24} />
           </IconButton>
         </Box>
-        {page !== "home" && <Footer registryHref={registryHref} compact={page === "contact"} />}
+        {<Footer registryHref={registryHref} compact={page === "contact"} />}
       </Container>
     </Box>
   );
