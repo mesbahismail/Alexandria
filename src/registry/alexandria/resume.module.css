@@ -621,10 +621,10 @@
   .aboutArrowDesktop { display: flex; position: absolute; z-index: 2; left: calc(4.2vw - 10px); bottom: 32px; margin: 0; }
 }
 
-/* Project pages use the same focused close view as Contact. */
+/* Project pages retain a fixed contact control. */
 .projectSite { min-height: 100svh; background: #09090a; }
 .innerPage.projectPage { padding: 0; }
-.projectOpening { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100svh; }
+.projectOpening { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100svh; border-bottom: 1px solid #343234; }
 .projectIntro { align-self: center; padding: 120px 6vw 88px 5vw; }
 .projectIntro h1 { margin: 28px 0; font-size: clamp(64px, 7.5vw, 112px); line-height: .95; letter-spacing: -.03em; font-weight: 400; }
 .projectIntro h1 em { font-weight: 400; }

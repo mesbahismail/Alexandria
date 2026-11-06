@@ -198,7 +198,9 @@ export function CaseStudyPage({ slug, imageUrls }: { slug: string; imageUrls: st
   const next = projects[(index + 1) % projects.length];
   const split = project.title.lastIndexOf(" ");
   return <article className={`${styles.innerPage} ${styles.projectPage}`}>
-    <CloseControl href="/work" label="Close project and return to selected work" />
+    <Link href="/contact" className={styles.contactTab} onClick={() => {
+      try { sessionStorage.setItem("alexandria-contact-return", `/work/${project.slug}`); } catch { /* Close falls back to the homepage without storage. */ }
+    }}><span>Contact me</span><LongArrow /></Link>
     <div className={styles.projectOpening}>
       <EditorialReveal className={styles.projectIntro}>
         <span className={styles.eyebrow}>{project.category} / CONCEPT</span>
