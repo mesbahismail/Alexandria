@@ -1,5 +1,15 @@
 # Alexandria
 
+<!-- mesbah-lab-credit -->
+> **A Mesbah Lab freebie.** Designed and coded by us at [Mesbah Lab](https://mesbahlab.net).
+>
+> **More freebies:** [mesbahlab.net](https://mesbahlab.net)
+>
+> **Follow us:** [Instagram](https://www.instagram.com/themesbahlab/) · [X](https://x.com/mesbahlab) · [Facebook](https://www.facebook.com/profile.php?id=1421874334341579) · [Pinterest](https://www.pinterest.com/mesbahlab/) · [YouTube](https://www.youtube.com/channel/UCyPo3LFW1Xv8DkcEnRdB7Ug) · [Behance](https://www.behance.net/mesbahismail) · [GitHub](https://github.com/mesbahismail)
+>
+> **Enjoying this freebie?** [Support us with a donation on PayPal](https://paypal.me/mesbahlab). Your tip keeps designs free for everyone.
+<!-- /mesbah-lab-credit -->
+
 A senior architect portfolio template with monochrome architectural photography, an editorial charcoal and gold identity, staggered project cards, and full-screen About panels. Built with Next.js 15, React 19, MUI Joy, and Framer Motion.
 
 ## Run
